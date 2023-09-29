@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Menus</title>
+  </head>
+  <body>
+    <div class="flex flex-row w-screen h-screen bg-gray-900">
+      <nav
+        class="p-4 flex flex-col justify-center gap-y-8 items-center border-r-4 border-gray-800"
+      >
+        <ul class="flex flex-col p-2 gap-y-6 text-white">
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-house text-2xl"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-call-bell text-2xl"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-notepad text-2xl text-orange-500"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-hamburger text-2xl"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="flex flex-col p-4 px-6 w-full h-fit">
+        <div class="flex">
+          <header class="flex p-2 border-b-4 border-gray-800 w-full">
+            <h1 class="text-white text-2xl uppercase font-semibold p-4">
+              Menus
+            </h1>
+          </header>
+        </div>
+        <div class="flex w-full h-full p-4" th:each="menu : ${menus}">
+          <!-- Card Container -->
+          <div
+            th:each="foodMenu : ${menu.foods}"
+            class="flex bg-gray-800 text-white px-4 py-6"
+          >
+            <ul class="flex px-8 w-full">
+              <li class="px-2 flex flex-col items-center justify-center">
+                <span
+                  th:text="${foodMenu.name}"
+                  class="text-lg font-semibold uppercase"
+                  >Arroz</span
+                >
+                <p class="flex flex-row gap-x-4 py-2">
+                  <span
+                    th:text="${foodMenu.portion}"
+                    class="text-lg italic text-md"
+                    >1x</span
+                  >
+                  <span
+                    th:text="${foodMenu.nutritionalGroup}"
+                    class="text-lg italic text-md"
+                    >Grão</span
+                  >
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

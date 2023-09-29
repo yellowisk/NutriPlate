@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Cadastro de Menus</title>
+  </head>
+  <body>
+    <div class="flex flex-row w-screen h-screen bg-gray-900">
+      <nav
+        class="p-4 flex flex-col justify-center gap-y-8 items-center border-r-4 border-gray-800"
+      >
+        <ul class="flex flex-col p-2 gap-y-6 text-white">
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-house text-2xl"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-call-bell text-2xl"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-notepad text-2xl text-orange-500"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="ph-bold ph-hamburger text-2xl"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="flex h-full flex-col p-4 px-6 w-full h-fit justify-between items-center">
+        <div class="flex w-full">
+          <header class="flex p-2 border-b-4 border-gray-800 w-full">
+            <h1 class="text-white text-2xl uppercase font-semibold p-4">
+              Cadastrar Menus
+            </h1>
+          </header>
+        </div>
+        <div class="flex w-full h-full p-4 justify-center items-center">
+          <form th:action="${menu.id == null} ? @{/menus/salvar} : @{/menus/editar}" th:object="${menu}" method="post" class="w-1/2 p-4 py-2 text-white flex flex-col gap-y-6 justify-center items-center">
+            <div class="flex flex-row w-fit gap-x-4 justify-center items-center">
+              <label for="isUsable" class="text-xl uppercase font-semibold py-2">Disponível:</label>
+              <input type="checkbox" th:field="*{isUsable}" id="isUsable" class="w-5 h-5">
+            </div>
+            <div class="flex flex-col w-full">
+              <label for="dateStart" class="text-xl uppercase font-semibold py-2">Data Início:</label>
+              <input type="date" id="dateStart" th:field="*{dateStart}" class="flex w-full bg-gray-800 outline-none uppercase p-4 my-2 text-bold border-b-4 border-gray-700 font-semibold">
+            </div>
+            <div class="flex flex-col w-full">
+              <label for="dateFinish" class="text-xl uppercase font-semibold py-2">Data Fim:</label>
+              <input type="date" id="dateFinish" th:field="*{dateFinish}" class="flex w-full bg-gray-800 outline-none uppercase p-4 my-2 text-bold border-b-4 border-gray-700 font-semibold">
+            </div>
+            <input type="hidden" id="id" th:field="*{id}">
+            <button type="submit" name="op" value="Salvar" class="bg-orange-500 p-4 mt-4 w-full text-xl uppercase font-bold rounded-md">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
